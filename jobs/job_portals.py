@@ -1,61 +1,68 @@
-"""Module for handling job portal integrations"""
+"""Module for handling job portal integrations - Pakistan Edition"""
 import urllib.parse
 from typing import Dict, List
 from .suggestions import LOCATION_SUGGESTIONS, get_cities_by_state
 
 class JobPortal:
-    """Class for searching jobs across multiple job portals"""
+    """Class for searching jobs across multiple Pakistani job portals"""
     
     def __init__(self):
         """Initialize job portal URLs and parameters"""
         self.portals = [
             {
+                "name": "Rozee.pk",
+                "icon": "fas fa-briefcase",
+                "color": "#FF6B35",
+                "url": "https://www.rozee.pk/job/jsearch/q/{}/fpn/{}",
+                "experience_param": ""
+            },
+            {
+                "name": "Mustakbil.com",
+                "icon": "fas fa-building",
+                "color": "#1E88E5",
+                "url": "https://www.mustakbil.com/jobs/keyword-{}-city-{}",
+                "experience_param": ""
+            },
+            {
+                "name": "PakJobs.pk",
+                "icon": "fas fa-user-tie",
+                "color": "#43A047",
+                "url": "https://www.pakjobs.pk/search?q={}&l={}",
+                "experience_param": ""
+            },
+            {
+                "name": "Bayrozgar.pk",
+                "icon": "fas fa-laptop",
+                "color": "#F4511E",
+                "url": "https://www.bayrozgar.pk/jobs?keywords={}&location={}",
+                "experience_param": ""
+            },
+            {
+                "name": "JobsAlert.pk",
+                "icon": "fas fa-bell",
+                "color": "#7B1FA2",
+                "url": "https://www.jobsalert.pk/?s={}&location={}",
+                "experience_param": ""
+            },
+            {
                 "name": "LinkedIn",
                 "icon": "fab fa-linkedin",
                 "color": "#0A66C2",
-                "url": "https://www.linkedin.com/jobs/search/?keywords={}&location={}&f_E={}",
-                "experience_param": ""
-            },
-            {
-                "name": "Naukri",
-                "icon": "fas fa-building",
-                "color": "#FF7555",
-                "url": "https://www.naukri.com/{}-jobs-in-{}?experience={}",
-                "experience_param": ""
-            },
-            {
-                "name": "Foundit (Monster)",
-                "icon": "fas fa-globe",
-                "color": "#5D3FD3",
-                "url": "https://www.foundit.in/srp/results?query={}&locations={}",
-                "experience_param": ""
-            },
-            {
-                "name": "FreshersWorld",
-                "icon": "fas fa-graduation-cap",
-                "color": "#003A9B",
-                "url": "https://www.freshersworld.com/jobs/jobsearch/{}-jobs-in-{}",
-                "experience_param": ""
-            },
-            {
-                "name": "TimesJobs",
-                "icon": "fas fa-briefcase",
-                "color": "#003A9B",
-                "url": "https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={}&txtLocation={}",
-                "experience_param": ""
-            },
-            {
-                "name": "Instahyre",
-                "icon": "fas fa-user-tie",
-                "color": "#003A9B",
-                "url": "https://www.instahyre.com/{}-jobs-in-{}",
+                "url": "https://www.linkedin.com/jobs/search/?keywords={}&location={}&geoId=102095887&f_E={}",
                 "experience_param": ""
             },
             {
                 "name": "Indeed",
                 "icon": "fas fa-search-dollar",
                 "color": "#003A9B",
-                "url": "https://in.indeed.com/jobs?q={}&l={}&explvl={}",
+                "url": "https://pk.indeed.com/jobs?q={}&l={}&explvl={}",
+                "experience_param": ""
+            },
+            {
+                "name": "Glassdoor",
+                "icon": "fas fa-door-open",
+                "color": "#0CAA41",
+                "url": "https://www.glassdoor.com/Job/pakistan-{}-jobs-SRCH_IL.0,8_IN192_KO9.htm?l={}",
                 "experience_param": ""
             }
         ]
@@ -74,21 +81,21 @@ class JobPortal:
         if not location:
             return ""
             
-        # Check if location is a state
+        # Check if location is a province
         location = location.strip()
-        is_state = False
+        is_province = False
         
-        # Check if the location is a state
+        # Check if the location is a province
         for loc in LOCATION_SUGGESTIONS:
-            if loc.get("type") == "state" and loc.get("text").lower() == location.lower():
-                is_state = True
+            if loc.get("type") == "province" and loc.get("text").lower() == location.lower():
+                is_province = True
                 break
         
-        # If it's a state, get the major city in that state for better job results
-        if is_state:
+        # If it's a province, get the major city in that province for better job results
+        if is_province:
             cities = get_cities_by_state(location)
             if cities:
-                # Use the first city in the state (usually the capital or major city)
+                # Use the first city in the province (usually the capital or major city)
                 location = cities[0]["text"]
         
         # Convert to lowercase and replace spaces with hyphens
@@ -118,7 +125,7 @@ class JobPortal:
                 if "-" in exp_id:
                     exp_min, exp_max = exp_id.split('-')
                     if exp_max == "+":
-                        exp_max = "15"  # Set a reasonable maximum for 10+ years
+                        exp_max = "15"  # Set a reasonable maximum for 7+ years
                 else:
                     # Handle "fresher" or other non-range values
                     exp_min = "0"
@@ -148,48 +155,14 @@ class JobPortal:
         experience_id = experience.get("id", "all")
         
         if experience_id == "all":
-            if portal_name == "Foundit (Monster)":
-                return ""
-            elif portal_name == "Naukri":
-                return ""
-            elif portal_name == "LinkedIn":
+            if portal_name == "LinkedIn":
                 return ""
             elif portal_name == "Indeed":
                 return "entry_level"
+            else:
+                return ""
         
-        if portal_name == "Foundit (Monster)":
-            if experience_id == "fresher":
-                return "&experienceRanges=0~0"
-            elif experience_id == "0-1":
-                return "&experienceRanges=0~1"
-            elif experience_id == "1-3":
-                return "&experienceRanges=1~3"
-            elif experience_id == "3-5":
-                return "&experienceRanges=3~5"
-            elif experience_id == "5-7":
-                return "&experienceRanges=5~7"
-            elif experience_id == "7-10":
-                return "&experienceRanges=7~10"
-            elif experience_id == "10+":
-                return "&experienceRanges=10~50"
-        
-        elif portal_name == "Naukri":
-            if experience_id == "fresher":
-                return "0"
-            elif experience_id == "0-1":
-                return "0-1"
-            elif experience_id == "1-3":
-                return "1-3"
-            elif experience_id == "3-5":
-                return "3-5"
-            elif experience_id == "5-7":
-                return "5-7"
-            elif experience_id == "7-10":
-                return "7-10"
-            elif experience_id == "10+":
-                return "10-50"
-        
-        elif portal_name == "LinkedIn":
+        if portal_name == "LinkedIn":
             if experience_id == "fresher" or experience_id == "0-1":
                 return "1"  # Entry level
             elif experience_id == "1-3" or experience_id == "3-5":
@@ -220,56 +193,44 @@ class JobPortal:
             portal_name = portal["name"]
             
             # Format job title based on portal
-            if portal_name == "Foundit (Monster)":
-                formatted_job = job_title.replace(' ', '+')
-            elif portal_name == "Naukri":
-                formatted_job = self.format_job_title(job_title)
-            elif portal_name == "Glassdoor":
-                # For Glassdoor, format job title with + signs
-                formatted_job = job_title.replace(' ', '+')
-            elif portal_name in ["LinkedIn", "Indeed", "TimesJobs"]:
+            if portal_name in ["Rozee.pk", "LinkedIn", "Indeed"]:
                 formatted_job = job_title.replace(' ', '%20')
-            elif portal_name in ["FreshersWorld", "Instahyre"]:
+            elif portal_name in ["Mustakbil.com", "PakJobs.pk", "Bayrozgar.pk", "JobsAlert.pk"]:
                 formatted_job = job_title.lower().replace(' ', '-')
+            elif portal_name == "Glassdoor":
+                formatted_job = job_title.replace(' ', '+')
             else:
                 formatted_job = job_title
             
             # Format location based on portal
-            if portal_name == "Foundit (Monster)":
-                formatted_location = location.replace(' ', '+') if location else "India"
-            elif portal_name == "Naukri":
-                formatted_location = self.format_location(location) if location else "india"
+            if portal_name in ["Rozee.pk"]:
+                # Rozee uses city codes, use city name directly
+                formatted_location = location if location else "Pakistan"
+            elif portal_name in ["Mustakbil.com", "PakJobs.pk", "Bayrozgar.pk"]:
+                formatted_location = location.lower().replace(' ', '-') if location else "pakistan"
+            elif portal_name in ["LinkedIn", "Indeed", "JobsAlert.pk"]:
+                formatted_location = location.replace(' ', '%20') if location else "Pakistan"
             elif portal_name == "Glassdoor":
-                # For Glassdoor, keep spaces in location name
-                formatted_location = location if location else "India"
-            elif portal_name in ["LinkedIn", "Indeed", "TimesJobs"]:
-                formatted_location = location.replace(' ', '%20') if location else "India"
-            elif portal_name in ["FreshersWorld", "Instahyre"]:
-                formatted_location = location.lower().replace(' ', '-') if location else "india"
+                formatted_location = location if location else "Pakistan"
             else:
-                formatted_location = location if location else "India"
+                formatted_location = location if location else "Pakistan"
             
             # Get experience parameter
             exp_param = self.get_experience_param(portal_name, experience)
             
             # Build URL based on portal
             try:
-                if portal_name == "Foundit (Monster)":
+                if portal_name == "Rozee.pk":
                     url = portal["url"].format(formatted_job, formatted_location)
-                    if exp_param:
-                        url += exp_param
-                elif portal_name == "Naukri":
-                    url = portal["url"].format(formatted_job, formatted_location, exp_param)
+                elif portal_name == "Mustakbil.com":
+                    url = portal["url"].format(formatted_job, formatted_location)
+                elif portal_name in ["PakJobs.pk", "Bayrozgar.pk", "JobsAlert.pk"]:
+                    url = portal["url"].format(formatted_job, formatted_location)
                 elif portal_name == "LinkedIn":
                     url = portal["url"].format(formatted_job, formatted_location, exp_param)
                 elif portal_name == "Indeed":
                     url = portal["url"].format(formatted_job, formatted_location, exp_param)
                 elif portal_name == "Glassdoor":
-                    # For Glassdoor, location comes first, then job title (occ parameter)
-                    url = portal["url"].format(formatted_location, formatted_job)
-                elif portal_name in ["TimesJobs"]:
-                    url = portal["url"].format(formatted_job, formatted_location)
-                elif portal_name in ["FreshersWorld", "Instahyre"]:
                     url = portal["url"].format(formatted_job, formatted_location)
                 else:
                     url = portal["url"]
@@ -278,7 +239,7 @@ class JobPortal:
                     "portal": portal_name,
                     "icon": portal["icon"],
                     "color": portal["color"],
-                    "title": f"{job_title} jobs in {location if location else 'India'}",
+                    "title": f"{job_title} jobs in {location if location else 'Pakistan'}",
                     "url": url
                 })
             except Exception as e:

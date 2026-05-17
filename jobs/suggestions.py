@@ -1,4 +1,4 @@
-"""Module containing job-related data and configurations"""
+"""Module containing job-related data and configurations for Pakistan"""
 
 # Job titles and skills suggestions
 JOB_SUGGESTIONS = [
@@ -58,7 +58,7 @@ JOB_SUGGESTIONS = [
 ]
 
 
-# Location suggestions - organized by states and major cities
+# Location suggestions - organized by provinces and major cities of Pakistan
 LOCATION_SUGGESTIONS = [
     # Work modes
     {"text": "Remote", "icon": "🏠", "type": "work_mode"},
@@ -66,133 +66,100 @@ LOCATION_SUGGESTIONS = [
     {"text": "Hybrid", "icon": "🏢", "type": "work_mode"},
     
     # Major tech hubs
-    {"text": "Bangalore", "icon": "📍", "type": "city", "state": "Karnataka"},
-    {"text": "Mumbai", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Delhi", "icon": "📍", "type": "city", "state": "Delhi"},
-    {"text": "Hyderabad", "icon": "📍", "type": "city", "state": "Telangana"},
-    {"text": "Pune", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Chennai", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    {"text": "Noida", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    {"text": "Gurgaon", "icon": "📍", "type": "city", "state": "Haryana"},
+    {"text": "Karachi", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Lahore", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Islamabad", "icon": "📍", "type": "city", "province": "Islamabad Capital Territory"},
+    {"text": "Rawalpindi", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Faisalabad", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Multan", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Peshawar", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Quetta", "icon": "📍", "type": "city", "province": "Balochistan"},
     
-    # States
-    {"text": "Karnataka", "icon": "🗺️", "type": "state"},
-    {"text": "Maharashtra", "icon": "🗺️", "type": "state"},
-    {"text": "Tamil Nadu", "icon": "🗺️", "type": "state"},
-    {"text": "Telangana", "icon": "🗺️", "type": "state"},
-    {"text": "Delhi", "icon": "🗺️", "type": "state"},
-    {"text": "Uttar Pradesh", "icon": "🗺️", "type": "state"},
-    {"text": "Gujarat", "icon": "🗺️", "type": "state"},
-    {"text": "Rajasthan", "icon": "🗺️", "type": "state"},
-    {"text": "Kerala", "icon": "🗺️", "type": "state"},
-    {"text": "West Bengal", "icon": "🗺️", "type": "state"},
-    {"text": "Punjab", "icon": "🗺️", "type": "state"},
-    {"text": "Haryana", "icon": "🗺️", "type": "state"},
-    {"text": "Andhra Pradesh", "icon": "🗺️", "type": "state"},
-    {"text": "Madhya Pradesh", "icon": "🗺️", "type": "state"},
-    {"text": "Bihar", "icon": "🗺️", "type": "state"},
+    # Provinces
+    {"text": "Sindh", "icon": "🗺️", "type": "province"},
+    {"text": "Punjab", "icon": "🗺️", "type": "province"},
+    {"text": "Khyber Pakhtunkhwa", "icon": "🗺️", "type": "province"},
+    {"text": "Balochistan", "icon": "🗺️", "type": "province"},
+    {"text": "Islamabad Capital Territory", "icon": "🗺️", "type": "province"},
+    {"text": "Azad Kashmir", "icon": "🗺️", "type": "province"},
+    {"text": "Gilgit-Baltistan", "icon": "🗺️", "type": "province"},
     
-    # Karnataka cities
-    {"text": "Mysore", "icon": "📍", "type": "city", "state": "Karnataka"},
-    {"text": "Hubli", "icon": "📍", "type": "city", "state": "Karnataka"},
-    {"text": "Mangalore", "icon": "📍", "type": "city", "state": "Karnataka"},
-    {"text": "Belgaum", "icon": "📍", "type": "city", "state": "Karnataka"},
-    {"text": "Davangere", "icon": "📍", "type": "city", "state": "Karnataka"},
-    
-    # Maharashtra cities
-    {"text": "Nagpur", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Nashik", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Aurangabad", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Kolhapur", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    {"text": "Solapur", "icon": "📍", "type": "city", "state": "Maharashtra"},
-    
-    # Tamil Nadu cities
-    {"text": "Coimbatore", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    {"text": "Madurai", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    {"text": "Salem", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    {"text": "Tiruchirappalli", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    {"text": "Vellore", "icon": "📍", "type": "city", "state": "Tamil Nadu"},
-    
-    # Uttar Pradesh cities
-    {"text": "Lucknow", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    {"text": "Kanpur", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    {"text": "Agra", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    {"text": "Varanasi", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    {"text": "Meerut", "icon": "📍", "type": "city", "state": "Uttar Pradesh"},
-    
-    # Andhra Pradesh cities
-    {"text": "Vijayawada", "icon": "📍", "type": "city", "state": "Andhra Pradesh"},
-    {"text": "Visakhapatnam", "icon": "📍", "type": "city", "state": "Andhra Pradesh"},
-    {"text": "Tirupati", "icon": "📍", "type": "city", "state": "Andhra Pradesh"},
-    {"text": "Guntur", "icon": "📍", "type": "city", "state": "Andhra Pradesh"},
-    {"text": "Nellore", "icon": "📍", "type": "city", "state": "Andhra Pradesh"},
-    
-    # West Bengal cities
-    {"text": "Kolkata", "icon": "📍", "type": "city", "state": "West Bengal"},
-    {"text": "Darjeeling", "icon": "📍", "type": "city", "state": "West Bengal"},
-    {"text": "Siliguri", "icon": "📍", "type": "city", "state": "West Bengal"},
-    {"text": "Durgapur", "icon": "📍", "type": "city", "state": "West Bengal"},
-    {"text": "Asansol", "icon": "📍", "type": "city", "state": "West Bengal"},
-    
-    # Gujarat cities
-    {"text": "Ahmedabad", "icon": "📍", "type": "city", "state": "Gujarat"},
-    {"text": "Surat", "icon": "📍", "type": "city", "state": "Gujarat"},
-    {"text": "Vadodara", "icon": "📍", "type": "city", "state": "Gujarat"},
-    {"text": "Rajkot", "icon": "📍", "type": "city", "state": "Gujarat"},
-    {"text": "Bhavnagar", "icon": "📍", "type": "city", "state": "Gujarat"},
-    
-    # Rajasthan cities
-    {"text": "Jaipur", "icon": "📍", "type": "city", "state": "Rajasthan"},
-    {"text": "Jodhpur", "icon": "📍", "type": "city", "state": "Rajasthan"},
-    {"text": "Udaipur", "icon": "📍", "type": "city", "state": "Rajasthan"},
-    {"text": "Kota", "icon": "📍", "type": "city", "state": "Rajasthan"},
-    {"text": "Ajmer", "icon": "📍", "type": "city", "state": "Rajasthan"},
-    
-    # Kerala cities
-    {"text": "Kochi", "icon": "📍", "type": "city", "state": "Kerala"},
-    {"text": "Thiruvananthapuram", "icon": "📍", "type": "city", "state": "Kerala"},
-    {"text": "Kozhikode", "icon": "📍", "type": "city", "state": "Kerala"},
-    {"text": "Thrissur", "icon": "📍", "type": "city", "state": "Kerala"},
-    {"text": "Alappuzha", "icon": "📍", "type": "city", "state": "Kerala"},
+    # Sindh cities
+    {"text": "Hyderabad", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Sukkur", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Larkana", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Nawabshah", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Mirpur Khas", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Jacobabad", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Shikarpur", "icon": "📍", "type": "city", "province": "Sindh"},
+    {"text": "Thatta", "icon": "📍", "type": "city", "province": "Sindh"},
     
     # Punjab cities
-    {"text": "Amritsar", "icon": "📍", "type": "city", "state": "Punjab"},
-    {"text": "Ludhiana", "icon": "📍", "type": "city", "state": "Punjab"},
-    {"text": "Jalandhar", "icon": "📍", "type": "city", "state": "Punjab"},
-    {"text": "Patiala", "icon": "📍", "type": "city", "state": "Punjab"},
-    {"text": "Bathinda", "icon": "📍", "type": "city", "state": "Punjab"},
+    {"text": "Gujranwala", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Sialkot", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Bahawalpur", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Sargodha", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Sheikhupura", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Jhang", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Rahim Yar Khan", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Gujrat", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Kasur", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Sahiwal", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Okara", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Wah Cantt", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Dera Ghazi Khan", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Mirpur", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Hafizabad", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Sadiqabad", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Chakwal", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Jhelum", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Khanewal", "icon": "📍", "type": "city", "province": "Punjab"},
+    {"text": "Mandi Bahauddin", "icon": "📍", "type": "city", "province": "Punjab"},
     
-    # Haryana cities
-    {"text": "Faridabad", "icon": "📍", "type": "city", "state": "Haryana"},
-    {"text": "Panipat", "icon": "📍", "type": "city", "state": "Haryana"},
-    {"text": "Ambala", "icon": "📍", "type": "city", "state": "Haryana"},
-    {"text": "Karnal", "icon": "📍", "type": "city", "state": "Haryana"},
-    {"text": "Hisar", "icon": "📍", "type": "city", "state": "Haryana"},
+    # Khyber Pakhtunkhwa cities
+    {"text": "Mardan", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Mingora", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Abbottabad", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Kohat", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Mansehra", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Nowshera", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Swabi", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Dera Ismail Khan", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Charsadda", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
+    {"text": "Bannu", "icon": "📍", "type": "city", "province": "Khyber Pakhtunkhwa"},
     
-    # Northeast cities
-    {"text": "Guwahati", "icon": "📍", "type": "city", "state": "Assam"},
-    {"text": "Shillong", "icon": "📍", "type": "city", "state": "Meghalaya"},
-    {"text": "Imphal", "icon": "📍", "type": "city", "state": "Manipur"},
-    {"text": "Aizawl", "icon": "📍", "type": "city", "state": "Mizoram"},
-    {"text": "Gangtok", "icon": "📍", "type": "city", "state": "Sikkim"},
+    # Balochistan cities
+    {"text": "Gwadar", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Turbat", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Khuzdar", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Hub", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Sibi", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Zhob", "icon": "📍", "type": "city", "province": "Balochistan"},
+    {"text": "Loralai", "icon": "📍", "type": "city", "province": "Balochistan"},
     
-    # Union Territories
-    {"text": "Chandigarh", "icon": "📍", "type": "city", "state": "Chandigarh"},
-    {"text": "Port Blair", "icon": "📍", "type": "city", "state": "Andaman and Nicobar Islands"},
-    {"text": "Shimla", "icon": "📍", "type": "city", "state": "Himachal Pradesh"},
-    {"text": "Dehradun", "icon": "📍", "type": "city", "state": "Uttarakhand"},
-    {"text": "Itanagar", "icon": "📍", "type": "city", "state": "Arunachal Pradesh"}
+    # Azad Kashmir cities
+    {"text": "Muzaffarabad", "icon": "📍", "type": "city", "province": "Azad Kashmir"},
+    {"text": "Mirpur AJK", "icon": "📍", "type": "city", "province": "Azad Kashmir"},
+    {"text": "Kotli", "icon": "📍", "type": "city", "province": "Azad Kashmir"},
+    {"text": "Rawalakot", "icon": "📍", "type": "city", "province": "Azad Kashmir"},
+    {"text": "Bagh", "icon": "📍", "type": "city", "province": "Azad Kashmir"},
+    
+    # Gilgit-Baltistan cities
+    {"text": "Gilgit", "icon": "📍", "type": "city", "province": "Gilgit-Baltistan"},
+    {"text": "Skardu", "icon": "📍", "type": "city", "province": "Gilgit-Baltistan"},
+    {"text": "Hunza", "icon": "📍", "type": "city", "province": "Gilgit-Baltistan"},
+    {"text": "Chilas", "icon": "📍", "type": "city", "province": "Gilgit-Baltistan"}
 ]
 
-# Function to get cities by state
-def get_cities_by_state(state_name):
-    """Get list of cities for a specific state"""
-    return [loc for loc in LOCATION_SUGGESTIONS if loc.get("type") == "city" and loc.get("state") == state_name]
+# Function to get cities by province
+def get_cities_by_state(province_name):
+    """Get list of cities for a specific province"""
+    return [loc for loc in LOCATION_SUGGESTIONS if loc.get("type") == "city" and loc.get("province") == province_name]
 
-# Function to get all states
+# Function to get all provinces
 def get_all_states():
-    """Get list of all states"""
-    return [loc for loc in LOCATION_SUGGESTIONS if loc.get("type") == "state"]
+    """Get list of all provinces"""
+    return [loc for loc in LOCATION_SUGGESTIONS if loc.get("type") == "province"]
 
 # Job types
 JOB_TYPES = [
@@ -214,12 +181,12 @@ EXPERIENCE_RANGES = [
     {"id": "7+", "text": "7+ years"}
 ]
 
-# Salary ranges
+# Salary ranges (in PKR Lakhs per annum)
 SALARY_RANGES = [
     {"id": "all", "text": "All Ranges"},
-    {"id": "0-3", "text": "0-3 LPA"},
-    {"id": "3-6", "text": "3-6 LPA"},
-    {"id": "6-10", "text": "6-10 LPA"},
-    {"id": "10-15", "text": "10-15 LPA"},
-    {"id": "15+", "text": "15+ LPA"}
+    {"id": "0-5", "text": "0-5 Lac"},
+    {"id": "5-10", "text": "5-10 Lac"},
+    {"id": "10-15", "text": "10-15 Lac"},
+    {"id": "15-25", "text": "15-25 Lac"},
+    {"id": "25+", "text": "25+ Lac"}
 ]
